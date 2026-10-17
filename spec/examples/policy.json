@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "islands": [
+    {"id": "pc1", "members": ["agent-a"]},
+    {"id": "vps1", "members": ["agent-b"]}
+  ],
+  "routes": [
+    {"from": "agent-a", "to": "agent-b", "ttl_seconds": 86400},
+    {"from": "agent-b", "to": "agent-a", "ttl_seconds": 86400}
+  ],
+  "signed_by": "owner",
+  "signature": "EXAMPLE-signature-placeholder"
+}

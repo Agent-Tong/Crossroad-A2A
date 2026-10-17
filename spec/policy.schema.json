@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/crossroad/spec/policy.schema.json",
+  "title": "Crossroad policy (illustrative)",
+  "description": "A signed policy lists the islands, their members and the routes. The owner signs it offline; no agent signs a policy. This schema is illustrative: real policy files carry more fields.",
+  "type": "object",
+  "required": ["version", "islands", "routes", "signed_by", "signature"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"type": "integer", "minimum": 1},
+    "islands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "members"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+          "members": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"}}
+        }
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "ttl_seconds"],
+        "additionalProperties": false,
+        "properties": {
+          "from": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+          "to": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+          "ttl_seconds": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "signed_by": {"type": "string", "const": "owner"},
+    "signature": {"type": "string", "minLength": 1, "description": "Owner signature over the canonical bytes. EXAMPLE values in this repository are placeholders."}
+  }
+}

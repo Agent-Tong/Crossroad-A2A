@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/crossroad/spec/answer.schema.json",
+  "title": "Crossroad answer (illustrative)",
+  "description": "An answer to one letter. An answer is admitted once per parent call_id; the same bytes again are a no-op, other bytes are refused as id_collision. A SaaS answer carries origin channel-origin and no authority.",
+  "type": "object",
+  "required": ["parent", "purpose", "ref", "to", "hop", "body"],
+  "additionalProperties": false,
+  "properties": {
+    "parent": {"type": "string", "pattern": "^[0-9]{8}T[0-9]{6}Z_[a-f0-9]{6}$", "description": "call_id of the letter being answered."},
+    "purpose": {"type": "string", "const": "answer"},
+    "ref": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,120}\\.md$", "description": "File name that holds the answer body."},
+    "to": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$", "description": "The agent that sent the letter."},
+    "hop": {"type": "integer", "minimum": 1, "maximum": 8, "description": "Hop count. The maximum of 8 is illustrative, not a protocol constant."},
+    "body": {"type": "string", "minLength": 1, "maxLength": 8000, "description": "UTF-8 text. maxLength counts CHARACTERS and is only a shape check. The reference bridge cap is 8000 UTF-8 BYTES, enforced by application validation (see validate_examples.py and the reference ports), not by this schema. SaaS answers are one fenced block."},
+    "origin": {"type": "string", "enum": ["island", "channel-origin"], "description": "channel-origin = written through a plugin or task list; it informs, it never commands."}
+  }
+}

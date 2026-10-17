@@ -1,0 +1,9 @@
+{
+  "parent": "20261016T020000Z_a1b2c3",
+  "purpose": "answer",
+  "ref": "ab261016a_answer.md",
+  "to": "agent-a",
+  "hop": 1,
+  "body": "Option A is cheaper. Option B is faster.",
+  "origin": "island"
+}

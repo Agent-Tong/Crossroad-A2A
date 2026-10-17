@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 216" width="1080" height="216" role="img" aria-labelledby="t d">
+<style>
+:root{--navy:#12233f;--accent:#d93f0b;--soft:#e6edf7;--bg:#f6f8fc;--mute:#3b4a66;--accsoft:#fde9dd}
+svg text{fill:var(--navy);font-family:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:400}
+svg .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:18px}
+svg .b{font-weight:700}
+svg .w{fill:#fff}
+svg .acc{fill:var(--accent)}
+svg .i{font-style:italic}
+.h1{font-size:72px;font-weight:700}
+.h2{font-size:30px;font-weight:600}
+.sub{font-size:22px}
+.isl{font-size:28px;font-weight:700}
+.host{font-size:21px}
+.ct{font-size:21px;font-weight:700}
+.cp{font-size:20px;fill:var(--mute)}
+.bd{font-size:21px}
+.sm{font-size:19px}
+.st{font-size:20px}
+.sec{font-size:26px;font-weight:700}
+</style>
+<title id="t">How a Crossroad letter travels</title>
+<desc id="d">Six steps: the agent writes a letter file; the island post office signs it and sends it to Town Hall; Town Hall checks member, route and gate; the receiver's post office rings the doorbell, or a SaaS agent pulls; the receiver answers; the answer is admitted once and the sender is woken to read it.</desc>
+<rect width="1080" height="216" fill="#f6f8fc"/>
+<g transform="translate(0,-1534)">
+<!-- HOW ONE LETTER TRAVELS -->
+<text x="40" y="1554" class="sec">HOW ONE LETTER TRAVELS</text>
+<g stroke="#12233f" stroke-width="2" fill="#fff">
+  <rect x="40" y="1566" width="320" height="78" rx="14"/><rect x="380" y="1566" width="320" height="78" rx="14"/><rect x="720" y="1566" width="320" height="78" rx="14"/>
+  <rect x="40" y="1652" width="320" height="78" rx="14"/><rect x="380" y="1652" width="320" height="78" rx="14"/><rect x="720" y="1652" width="320" height="78" rx="14"/>
+</g>
+<g fill="#d93f0b">
+  <circle cx="70" cy="1605" r="18"/><circle cx="410" cy="1605" r="18"/><circle cx="750" cy="1605" r="18"/>
+  <circle cx="70" cy="1691" r="18"/><circle cx="410" cy="1691" r="18"/><circle cx="750" cy="1691" r="18"/>
+</g>
+<g class="w b" text-anchor="middle" style="font-size:20px;font-weight:700">
+  <text x="70" y="1612" class="w b">1</text><text x="410" y="1612" class="w b">2</text><text x="750" y="1612" class="w b">3</text>
+  <text x="70" y="1698" class="w b">4</text><text x="410" y="1698" class="w b">5</text><text x="750" y="1698" class="w b">6</text>
+</g>
+<g stroke="#d93f0b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M365,1597 L375,1605 L365,1613"/><path d="M705,1597 L715,1605 L705,1613"/>
+  <path d="M365,1683 L375,1691 L365,1699"/><path d="M705,1683 L715,1691 L705,1699"/>
+</g>
+<g class="st">
+  <text x="100" y="1591">Agent writes a</text><text x="100" y="1613">letter file</text>
+  <text x="440" y="1591">Island post office</text><text x="440" y="1613">signs + sends to</text><text x="440" y="1635">Town Hall</text>
+  <text x="780" y="1591">Town Hall checks</text><text x="780" y="1613">member, route, gate</text>
+  <text x="100" y="1677">Receiver's post office</text><text x="100" y="1699">rings the doorbell</text><text x="100" y="1721">(or SaaS pulls)</text>
+  <text x="440" y="1677">Receiver answers</text>
+  <text x="780" y="1677">Answer admitted once,</text><text x="780" y="1699">sender woken to</text><text x="780" y="1721">read it</text>
+</g>
+
+</g>
+</svg>

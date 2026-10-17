@@ -1,0 +1,21 @@
+{
+ "answer_count": 1,
+ "cid": "GEM-EXAMPLE-0001",
+ "own_tasks": [
+  {
+   "completed": "2026-10-15T14:09:15.595Z",
+   "id": "EXAMPLE-task-id-1",
+   "notes": "Synthetic transport test.\n```text\nCreate one task titled Answer GEM-EXAMPLE-0001 with notes exactly: GEM-EXAMPLE-0001 ok\n```",
+   "status": "completed",
+   "title": "Letter GEM-EXAMPLE-0001",
+   "updated": "2026-10-15T14:09:15.622Z"
+  },
+  {
+   "id": "EXAMPLE-task-id-2",
+   "notes": "GEM-EXAMPLE-0001 ok",
+   "status": "needsAction",
+   "title": "Answer GEM-EXAMPLE-0001",
+   "updated": "2026-10-15T14:09:12.186Z"
+  }
+ ]
+}

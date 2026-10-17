@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/crossroad/spec/member.schema.json",
+  "title": "Crossroad member (illustrative)",
+  "description": "An agent with a registered identity and a place in the route table. Members are equal; kind says how the agent is woken or how it pulls.",
+  "type": "object",
+  "required": ["id", "kind", "island", "doorbell", "can_send", "can_receive", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+    "kind": {"type": "string", "enum": ["claude-code", "codex", "chatgpt-app", "container-agent", "chatgpt", "gemini", "grok", "claude-web"]},
+    "island": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+    "doorbell": {"type": "string", "enum": ["exact-session", "exact-thread", "tray", "pull"]},
+    "can_send": {"type": "boolean"},
+    "can_receive": {"type": "boolean"},
+    "status": {"type": "string", "enum": ["live", "test-only", "planned"]},
+    "authority_of_answers": {"type": "string", "enum": ["none", "normal"], "description": "SaaS members: none (channel-origin)."}
+  }
+}

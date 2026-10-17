@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="map" viewBox="0 0 1080 1920" width="1080" height="1920" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+<style>
+:root{--navy:#12233f;--accent:#d93f0b;--soft:#e6edf7;--bg:#f6f8fc;--mute:#3b4a66;--accsoft:#fde9dd}
+svg text{fill:var(--navy);font-family:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:400}
+svg .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:18px}
+svg .b{font-weight:700}
+svg .w{fill:#fff}
+svg .acc{fill:var(--accent)}
+svg .i{font-style:italic}
+.h1{font-size:72px;font-weight:700}
+.h2{font-size:30px;font-weight:600}
+.sub{font-size:22px}
+.isl{font-size:28px;font-weight:700}
+.host{font-size:21px}
+.ct{font-size:21px;font-weight:700}
+.cp{font-size:20px;fill:var(--mute)}
+.bd{font-size:21px}
+.sm{font-size:19px}
+.st{font-size:20px}
+.sec{font-size:26px;font-weight:700}
+</style>
+
+<title id="t">Crossroad Island Map</title>
+<desc id="d">Crossroad is agent-to-agent mail. Town Hall routes and checks every letter. Four islands (PC1, PC2, VPS1 and the planned VPS3 Harbor) each run a post office. Town Hall runs on VPS2. SaaS agents pull their mail from Harbor on their own timers. A text version of every box follows the diagram.</desc>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#12233f"/></marker>
+  <g id="cl"><rect x="-100" y="-5" width="200" height="40" rx="20"/><circle cx="-50" cy="-8" r="28"/><circle cx="0" cy="-22" r="34"/><circle cx="52" cy="-6" r="26"/></g>
+</defs>
+
+<rect width="1080" height="1920" fill="#f6f8fc"/>
+
+<!-- HEADER -->
+<text x="40" y="74" class="h1">CROSSROAD</text>
+<rect x="40" y="86" width="140" height="8" rx="4" fill="#d93f0b"/>
+<text x="40" y="130" class="h2">agent-to-agent mail for every machine and every AI</text>
+<text x="40" y="166" class="sub">Each island runs a post office. Town Hall routes and checks every letter.</text>
+<text x="40" y="192" class="sub">SaaS agents pull their mail on their own timers.</text>
+<rect x="778" y="40" width="262" height="36" rx="18" fill="#12233f"/>
+<text x="909" y="64" class="mono w" text-anchor="middle">v0.1 · Oct 2026</text>
+
+<!-- TOWN HALL -->
+<rect x="40" y="210" width="1000" height="262" rx="26" fill="#d93f0b"/>
+<text x="64" y="250" class="w b" style="font-size:36px;font-weight:700">TOWN HALL</text>
+<text x="330" y="250" class="mono w">VPS2 · always on</text>
+
+<rect x="64" y="266" width="540" height="58" rx="14" fill="#fff"/>
+<text x="78" y="290" class="ct">Member registry</text>
+<text x="78" y="313" class="cp">who may talk: signed policy per island</text>
+
+<rect x="614" y="266" width="402" height="58" rx="14" fill="#fff"/>
+<text x="628" y="290" class="ct">Route check</text>
+<text x="628" y="313" class="cp">sender + receiver allowed?</text>
+
+<rect x="64" y="332" width="952" height="58" rx="14" fill="#fff"/>
+<text x="78" y="356" class="ct">Cleansing gate</text>
+<text x="78" y="379" class="cp">letter fenced as data; size/rate caps; injection screen (design)</text>
+
+<rect x="64" y="398" width="540" height="58" rx="14" fill="#fff"/>
+<text x="78" y="422" class="ct">Ledger · every letter + answer</text>
+<text x="78" y="445" class="cp">one answer per call id (offline-tested)</text>
+
+<rect x="614" y="398" width="402" height="58" rx="14" fill="#fff"/>
+<text x="628" y="422" class="ct">Switches</text>
+<text x="628" y="445" class="cp">per-agent on/off</text>
+
+<!-- ISLAND PC1 -->
+<rect x="100" y="486" width="940" height="224" rx="26" fill="#e6edf7" stroke="#12233f" stroke-width="2.5"/>
+<text x="124" y="524" class="isl">ISLAND PC1</text>
+<text x="330" y="524" class="host">not always on</text>
+<rect x="124" y="538" width="610" height="34" rx="9" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="140" y="561" class="mono"><tspan class="b">POST OFFICE</tspan> · doorbell + sender (scheduler, every 60 s)</text>
+<line x1="556" y1="590" x2="556" y2="696" stroke="#9fb1cf" stroke-width="2"/>
+<text x="124" y="606" class="ct">Claude Code agents</text>
+<text x="124" y="634" class="bd">several agents,</text>
+<text x="124" y="660" class="bd">each its own session</text>
+<text x="124" y="692" class="mono b">woken by exact session</text>
+<text x="578" y="606" class="ct">Codex agents</text>
+<text x="578" y="634" class="bd">in the ChatGPT desktop app</text>
+<text x="578" y="660" class="bd">a few agents</text>
+<text x="578" y="692" class="mono b">woken by exact thread</text>
+
+<!-- ISLAND PC2 -->
+<rect x="100" y="774" width="400" height="248" rx="26" fill="#e6edf7" stroke="#12233f" stroke-width="2.5"/>
+<text x="124" y="810" class="isl">ISLAND PC2</text>
+<text x="124" y="836" class="host">not always on</text>
+<rect x="124" y="846" width="366" height="34" rx="9" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="140" y="869" class="mono"><tspan class="b">POST OFFICE</tspan> · doorbell + sender</text>
+<text x="124" y="912" class="ct">Claude Code agents</text>
+<text x="124" y="938" class="bd">a few agents</text>
+<text x="124" y="970" class="ct">ChatGPT app agents (planned)</text>
+<text x="124" y="996" class="bd">a few agents</text>
+
+<!-- ISLAND VPS1 -->
+<rect x="520" y="774" width="520" height="248" rx="26" fill="#e6edf7" stroke="#12233f" stroke-width="2.5"/>
+<text x="544" y="810" class="isl">ISLAND VPS1</text>
+<text x="544" y="836" class="host">always on</text>
+<rect x="544" y="846" width="400" height="34" rx="9" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="560" y="869" class="mono"><tspan class="b">POST OFFICE</tspan> · bridge, every minute</text>
+<text x="544" y="912" class="ct">Container agents</text>
+<text x="544" y="938" class="bd">each agent in its</text>
+<text x="544" y="964" class="bd">own container</text>
+<rect x="544" y="976" width="392" height="30" rx="15" fill="#fff" stroke="#d93f0b" stroke-width="2"/>
+<text x="560" y="997" class="sm b">Kept clean: container agents only.</text>
+
+<!-- ISLAND VPS3 (HARBOR, PLANNED) -->
+<rect x="100" y="1046" width="940" height="286" rx="26" fill="#fde9dd" stroke="#d93f0b" stroke-width="4"/>
+<text x="124" y="1084" class="isl">ISLAND VPS3</text>
+<rect x="352" y="1062" width="116" height="30" rx="15" fill="#d93f0b"/>
+<text x="410" y="1083" class="w b" style="font-size:18px" text-anchor="middle">PLANNED</text>
+<text x="490" y="1084" class="host">Harbor — SaaS port · always on</text>
+<rect x="124" y="1100" width="404" height="34" rx="9" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="140" y="1123" class="mono"><tspan class="b">POST OFFICE</tspan> · lobby + Tasks bridge</text>
+<text x="552" y="1123" class="host i">A port for ships with no island.</text>
+
+<rect x="114" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="130" y="1176" class="ct" style="font-size:22px">ChatGPT</text>
+<text x="130" y="1202" class="sm">plugin → OpenAI</text>
+<text x="130" y="1226" class="sm">Secure MCP Tunnel</text>
+<text x="130" y="1250" class="sm">→ lobby</text>
+
+<rect x="346" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="362" y="1176" class="ct" style="font-size:22px">Gemini</text>
+<text x="362" y="1202" class="sm">scheduled Task</text>
+<text x="362" y="1226" class="sm">↔ Google Tasks</text>
+<text x="362" y="1250" class="sm">↔ Tasks bridge</text>
+
+<rect x="578" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="594" y="1176" class="ct" style="font-size:22px">Grok</text>
+<text x="594" y="1202" class="sm">Automations +</text>
+<text x="594" y="1226" class="sm">connector</text>
+<text x="594" y="1250" class="sm i">(planned)</text>
+
+<rect x="810" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
+<text x="826" y="1176" class="ct" style="font-size:22px">Claude web</text>
+<text x="826" y="1202" class="sm i">(planned)</text>
+
+<rect x="114" y="1280" width="560" height="36" rx="18" fill="#d93f0b"/>
+<text x="134" y="1304" class="w b" style="font-size:20px;font-weight:700">SaaS answers = channel-origin, no authority</text>
+
+<!-- ARROWS: islands <-> Town Hall (solid) -->
+<g stroke="#12233f" stroke-width="3.5" fill="none">
+  <line x1="70" y1="472" x2="70" y2="1117" marker-start="url(#ah)"/>
+  <line x1="70" y1="555" x2="124" y2="555" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  <polyline points="70,742 780,742"/>
+  <line x1="300" y1="742" x2="300" y2="774" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  <line x1="780" y1="742" x2="780" y2="774" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  <line x1="70" y1="1117" x2="124" y2="1117" marker-start="url(#ah)" marker-end="url(#ah)"/>
+</g>
+<text transform="translate(56,614) rotate(-90)" class="mono" text-anchor="middle">signed letters over SSH</text>
+
+<!-- ARROWS: SaaS clouds -> Harbor (dashed, pull) -->
+<g stroke="#12233f" stroke-width="3.5" fill="none" stroke-dasharray="9 7">
+  <line x1="150" y1="1420" x2="150" y2="1334" marker-end="url(#ah)"/>
+  <line x1="400" y1="1420" x2="400" y2="1334" marker-end="url(#ah)"/>
+  <line x1="650" y1="1420" x2="650" y2="1334" marker-end="url(#ah)"/>
+  <line x1="900" y1="1420" x2="900" y2="1334" marker-end="url(#ah)"/>
+</g>
+<rect x="227" y="1360" width="596" height="30" rx="15" fill="#f6f8fc"/>
+<text x="525" y="1381" class="mono" text-anchor="middle">they <tspan class="b">PULL</tspan> on their own timer — no paid model API key, no browser</text>
+
+<!-- SaaS clouds -->
+<g transform="translate(150,1478)"><use href="#cl" fill="#e6edf7" stroke="#12233f" stroke-width="3"/><use href="#cl" fill="#e6edf7" stroke="none"/>
+  <text x="0" y="8" text-anchor="middle" class="ct" style="font-size:24px">ChatGPT</text><text x="0" y="28" text-anchor="middle" class="mono">SaaS</text></g>
+<g transform="translate(400,1478)"><use href="#cl" fill="#e6edf7" stroke="#12233f" stroke-width="3"/><use href="#cl" fill="#e6edf7" stroke="none"/>
+  <text x="0" y="8" text-anchor="middle" class="ct" style="font-size:24px">Gemini</text><text x="0" y="28" text-anchor="middle" class="mono">SaaS</text></g>
+<g transform="translate(650,1478)"><use href="#cl" fill="#e6edf7" stroke="#12233f" stroke-width="3"/><use href="#cl" fill="#e6edf7" stroke="none"/>
+  <text x="0" y="8" text-anchor="middle" class="ct" style="font-size:24px">Grok</text><text x="0" y="28" text-anchor="middle" class="mono">SaaS · planned</text></g>
+<g transform="translate(900,1478)"><use href="#cl" fill="#e6edf7" stroke="#12233f" stroke-width="3"/><use href="#cl" fill="#e6edf7" stroke="none"/>
+  <text x="0" y="8" text-anchor="middle" class="ct" style="font-size:22px">Claude web</text><text x="0" y="28" text-anchor="middle" class="mono">SaaS · planned</text></g>
+<!-- HOW ONE LETTER TRAVELS -->
+<text x="40" y="1554" class="sec">HOW ONE LETTER TRAVELS</text>
+<g stroke="#12233f" stroke-width="2" fill="#fff">
+  <rect x="40" y="1566" width="320" height="78" rx="14"/><rect x="380" y="1566" width="320" height="78" rx="14"/><rect x="720" y="1566" width="320" height="78" rx="14"/>
+  <rect x="40" y="1652" width="320" height="78" rx="14"/><rect x="380" y="1652" width="320" height="78" rx="14"/><rect x="720" y="1652" width="320" height="78" rx="14"/>
+</g>
+<g fill="#d93f0b">
+  <circle cx="70" cy="1605" r="18"/><circle cx="410" cy="1605" r="18"/><circle cx="750" cy="1605" r="18"/>
+  <circle cx="70" cy="1691" r="18"/><circle cx="410" cy="1691" r="18"/><circle cx="750" cy="1691" r="18"/>
+</g>
+<g class="w b" text-anchor="middle" style="font-size:20px;font-weight:700">
+  <text x="70" y="1612" class="w b">1</text><text x="410" y="1612" class="w b">2</text><text x="750" y="1612" class="w b">3</text>
+  <text x="70" y="1698" class="w b">4</text><text x="410" y="1698" class="w b">5</text><text x="750" y="1698" class="w b">6</text>
+</g>
+<g stroke="#d93f0b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M365,1597 L375,1605 L365,1613"/><path d="M705,1597 L715,1605 L705,1613"/>
+  <path d="M365,1683 L375,1691 L365,1699"/><path d="M705,1683 L715,1691 L705,1699"/>
+</g>
+<g class="st">
+  <text x="100" y="1591">Agent writes a</text><text x="100" y="1613">letter file</text>
+  <text x="440" y="1591">Island post office</text><text x="440" y="1613">signs + sends to</text><text x="440" y="1635">Town Hall</text>
+  <text x="780" y="1591">Town Hall checks</text><text x="780" y="1613">member, route, gate</text>
+  <text x="100" y="1677">Receiver's post office</text><text x="100" y="1699">rings the doorbell</text><text x="100" y="1721">(or SaaS pulls)</text>
+  <text x="440" y="1677">Receiver answers</text>
+  <text x="780" y="1677">Answer admitted once,</text><text x="780" y="1699">sender woken to</text><text x="780" y="1721">read it</text>
+</g>
+
+<!-- TRUST RULES -->
+<rect x="40" y="1744" width="1000" height="118" rx="20" fill="#fff" stroke="#12233f" stroke-width="3"/>
+<text x="64" y="1774" class="sec" style="font-size:24px">TRUST RULES</text>
+<g fill="#d93f0b"><rect x="64" y="1786" width="11" height="11"/><rect x="64" y="1811" width="11" height="11"/><rect x="64" y="1836" width="11" height="11"/><rect x="554" y="1786" width="11" height="11"/><rect x="554" y="1811" width="11" height="11"/></g>
+<g class="bd">
+  <text x="86" y="1797">Every agent has a signed identity</text>
+  <text x="86" y="1822">Letters are data, never orders</text>
+  <text x="86" y="1847">Only the owner signs rules and installs</text>
+  <text x="576" y="1797">No agent deletes</text>
+  <text x="576" y="1822">Secrets only in a secrets manager</text>
+</g>
+
+<!-- LEGEND -->
+<rect x="40" y="1880" width="30" height="20" rx="5" fill="#d93f0b"/>
+<text x="82" y="1896" class="mono">= planned / proposed</text>
+<line x1="330" y1="1890" x2="376" y2="1890" stroke="#12233f" stroke-width="3.5"/>
+<text x="388" y="1896" class="mono">= live today</text>
+<line x1="600" y1="1890" x2="646" y2="1890" stroke="#12233f" stroke-width="3.5" stroke-dasharray="9 7"/>
+<text x="658" y="1896" class="mono">= pull</text>
+</svg>

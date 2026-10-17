@@ -1,0 +1,17 @@
+# Example tunnel-client profile. Replace the EXAMPLE values. The key is read from the environment, never from this file.
+config_version: 1
+control_plane:
+  base_url: "https://EXAMPLE-vendor-control-plane.invalid"
+  tunnel_id: "EXAMPLE-tunnel-id"
+  api_key: "env:CONTROL_PLANE_API_KEY"
+health:
+  listen_addr: "127.0.0.1:CLIENT_HEALTH_PORT"      # replace the placeholder with a free loopback port
+admin_ui:
+  open_browser: false
+log:
+  level: info
+  format: json
+mcp:
+  server_urls:
+    - channel: main
+      url: "http://127.0.0.1:LOBBY_PORT/mcp"      # replace LOBBY_PORT with the lobby port

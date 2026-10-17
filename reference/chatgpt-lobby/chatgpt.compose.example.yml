@@ -1,0 +1,78 @@
+# EXAMPLE ONLY, NOT INSTALLED. ChatGPT lobby + tunnel as two containers on an always-on host. Separate compose project: it does
+# not touch any other compose file or agent.
+# Replace every EXAMPLE and every ${...} value. Set LOBBY_PORT and CLIENT_HEALTH_PORT in the environment (loopback ports).
+# Pattern: hardened containers, bind mounts of exactly <tray>/in:ro and <tray>/out:rw, no ACL change.
+# NETWORK: the tunnel container joins the lobby container's network namespace (network_mode: service:...). The lobby listens on
+# 127.0.0.1 INSIDE that namespace only. No `ports:` anywhere: nothing is published on the host. If the lobby container is
+# RESTARTED or RECREATED, the tunnel container keeps a dead namespace; tunnel_entry.py probes the lobby every 10 s and exits 4 after
+# 3 failures, so docker's restart policy rejoins the lobby's current namespace; its healthcheck probes the lobby URL too.
+x-hardening: &hardening
+  image: EXAMPLE-registry/EXAMPLE-python-image:EXAMPLE-pinned-tag   # pin your own image by digest
+  restart: unless-stopped
+  init: true
+  working_dir: /app
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+services:
+  crossroad-chatgpt-lobby:
+    <<: *hardening
+    container_name: crossroad-chatgpt-lobby
+    user: "1000:1000"          # EXAMPLE: the island bridge accepts out/ files only from this uid; the lobby holds no secret, so no root step
+    entrypoint: ["python3", "-I", "-B", "/app/lobby_main.py", "--config", "/config/lobby-config.json"]
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+    cap_drop: [ALL]
+    tmpfs:
+      - /tmp:mode=1777,size=8m
+    mem_limit: 256m
+    cpus: "0.3"
+    pids_limit: 64
+    volumes:
+      - /opt/example/chatgpt-lobby:/app:ro
+      - /etc/example/chatgpt-lobby:/config:ro
+      - /var/lib/example/chatgpt-lobby:/state:rw
+      - /srv/example/dropbox/chatgpt/in:/srv/example/dropbox/chatgpt/in:ro
+      - /srv/example/dropbox/chatgpt/out:/srv/example/dropbox/chatgpt/out:rw
+    healthcheck:
+      test: ["CMD", "python3", "-I", "-B", "/app/http_health.py", "http://127.0.0.1:${LOBBY_PORT}/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+  crossroad-chatgpt-tunnel:
+    <<: *hardening
+    container_name: crossroad-chatgpt-tunnel
+    network_mode: "service:crossroad-chatgpt-lobby"
+    depends_on:
+      crossroad-chatgpt-lobby:
+        condition: service_healthy
+    entrypoint: ["python3", "-I", "-B", "/app/tunnel_entry.py"]
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOBBY_PORT=${LOBBY_PORT}
+    # root inside the container only so it can read the root-only credential file, then it drops to the container uid before it runs the client.
+    cap_drop: [ALL]
+    cap_add: [SETUID, SETGID]
+    tmpfs:
+      - /tmp:mode=1777,size=16m
+    mem_limit: 512m
+    cpus: "0.5"
+    pids_limit: 128
+    volumes:
+      - /opt/example/chatgpt-tunnel:/app:ro
+      - /opt/example/tunnel-client:/vendor:ro                 # the vendor client you downloaded and pinned yourself
+      - /etc/example/tunnel/profiles:/profiles:ro
+      - /run/example-secrets/chatgpt-lobby:/secrets:ro        # root-only file delivered by your secrets manager
+      - /var/lib/example/chatgpt-tunnel:/state:rw
+    healthcheck:
+      test: ["CMD", "python3", "-I", "-B", "/app/http_health.py", "http://127.0.0.1:${LOBBY_PORT}/health", "http://127.0.0.1:${CLIENT_HEALTH_PORT}/healthz"]   # the lobby path AND the client
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 90s

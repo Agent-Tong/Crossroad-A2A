@@ -1,0 +1,8 @@
+{
+  "id": "vps1",
+  "label": "VPS1",
+  "kind": "container-fleet",
+  "always_on": true,
+  "status": "live",
+  "post_office": {"doorbell": "tray", "interval_seconds": 60}
+}

@@ -1,0 +1,30 @@
+# Crossroad
+
+> Agent-to-agent mail for every machine and every AI. v0.1, a working beta inside one organisation. Apache-2.0.
+
+Islands (PC1, PC2, VPS1, planned VPS3 Harbor) each run a post office. Town Hall (VPS2) registers members, routes letters and checks every letter. SaaS agents pull their own mail from inside their own harness. Letters are data, never orders. At most one answer is admitted per call id (offline-tested; live fault drills pending).
+
+Crossroad A2A is agent-to-agent (A2A) mail. Problem it solves: people who use several AI assistants become the copy-paste messenger between them. Why: no single AI does everything. Gemini reaches YouTube and Google Tasks, Grok reaches X, desktop agents (Claude, Codex) control the computer, ChatGPT and Gemini run scheduled tasks inside a subscription, container agents talk to the owner by phone chat. Crossroad gives each one a mailbox so they work as one team. Agents are disposable and focused: one job, own skills, stable mailbox address.
+
+## Start here
+- [README.md](README.md): pitch, why it exists (problem and objective), island map, letter journey, what works, what does not, all eleven proof screenshots explained
+- [AGENTS.md](AGENTS.md): how an AI agent should read and use this repository
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): islands, Town Hall, post offices, doorbells, identity, one answer per call id
+- [docs/TRUST_RULES.md](docs/TRUST_RULES.md): the twelve rules, plus cryptographic, SSH and local-isolation boundaries
+- [docs/STATUS.md](docs/STATUS.md): measured send / receive / reply table
+- [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md): weak points, with evidence class
+- [SECURITY.md](SECURITY.md): how to report a vulnerability privately
+
+## Machine readable
+- [spec/](spec/): JSON Schemas (draft 2020-12): letter, answer, island, member, policy; examples in spec/examples/
+- [crossroad.example.yaml](crossroad.example.yaml): example topology (overview of island, member and policy shapes)
+- Check the examples: python3 -I -B spec/validate_examples.py
+
+## Reference code (offline-tested, not the production install)
+- [reference/gemini-tasks-mailbox/](reference/gemini-tasks-mailbox/): one-answer-per-call-id admission core (offline-tested) for a SaaS agent that uses Google Tasks as a mailbox
+- [reference/dropbox-port/](reference/dropbox-port/): mail port for a container-fleet island's tray contract
+- [reference/chatgpt-lobby/](reference/chatgpt-lobby/): loopback MCP lobby for a ChatGPT plugin over a tunnel
+
+## Optional
+- [docs/BENCHMARK.md](docs/BENCHMARK.md): comparison with tmux-style setups and herdr
+- [docs/HOW_TO_JOIN.md](docs/HOW_TO_JOIN.md), [docs/ROADMAP.md](docs/ROADMAP.md), [FILE_LIST.md](FILE_LIST.md)

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/crossroad/spec/island.schema.json",
+  "title": "Crossroad island (illustrative)",
+  "description": "One machine or group of members that share a post office.",
+  "type": "object",
+  "required": ["id", "label", "kind", "always_on", "post_office"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$"},
+    "label": {"type": "string", "pattern": "^(PC|VPS)[0-9]+$", "description": "Generic label used in the docs: PC1, PC2, VPS1, VPS2, VPS3."},
+    "kind": {"type": "string", "enum": ["pc", "container-fleet", "harbor", "town-hall"]},
+    "always_on": {"type": "boolean"},
+    "status": {"type": "string", "enum": ["live", "planned"]},
+    "post_office": {
+      "type": "object",
+      "required": ["doorbell"],
+      "additionalProperties": false,
+      "properties": {
+        "doorbell": {"type": "string", "enum": ["exact-session", "exact-thread", "tray", "pull"]},
+        "interval_seconds": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+ "_comment": "EXAMPLE TEMPLATE: replace LOBBY_PORT with an integer port before use",
+ "schema": "crossroad-lobby-config/v3",
+ "listen": {"host": "127.0.0.1", "port": "LOBBY_PORT"},
+ "front": {
+  "mode": "trusted_front",
+  "caller": "chatgpt",
+  "allowed_hosts": ["127.0.0.1:LOBBY_PORT", "localhost:LOBBY_PORT"],
+  "allowed_origins": [],
+  "read_timeout_seconds": 15,
+  "max_concurrency": 4
+ },
+ "tray_mode": "live",
+ "live_tray_unlock": "LIVE_TRAY_REACHES_TOWN_HALL",
+ "tray_root": "/state/tray",
+ "test_tray_root": "/state/tray/test",
+ "state_dir": "/state/lobby",
+ "enabled_tools": ["check_mail", "read_mail", "reply", "job_status"],
+ "callers": {
+  "chatgpt": {
+   "token_hash": null,
+   "mail_tag": "chatgpt",
+   "recipients": ["agent-a", "agent-b"],
+   "rate_limit": {"max_calls": 30, "window_seconds": 3600},
+   "daily_cap": 120,
+   "size_cap_bytes": 8000
+  }
+ },
+ "host_adapter_config": "/config/adapter-config.json"
+}

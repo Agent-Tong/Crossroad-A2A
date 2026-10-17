@@ -1,0 +1,63 @@
+# Example Crossroad topology. Generic labels only. Every value is an example; nothing here is a real host, key or id.
+# Overview that combines the island, member and policy shapes in one file. It is NOT a single policy.schema.json instance
+# (that schema has additionalProperties false and a different top level). Per-shape companions: spec/*.schema.json and spec/examples/*.json.
+version: 1
+status: v0.1-example
+
+town_hall:
+  host: VPS2                # always on; registers members, checks routes, cleanses every letter, keeps the ledger
+  checks: [registered_sender, signed_route, peer_data_fence, size_and_rate_caps, injection_screen]   # injection_screen is a design item: not in this public reference, not audited here
+
+islands:
+  - id: pc1
+    label: PC1
+    kind: pc
+    always_on: false
+    status: live
+    post_office: {doorbell: exact-session, interval_seconds: 60}
+    members: [claude-code-agent-a, codex-agent-a]
+  - id: pc2
+    label: PC2
+    kind: pc
+    always_on: false
+    status: live
+    post_office: {doorbell: exact-session}
+    members: [claude-code-agent-b, chatgpt-app-agent-a]
+  - id: vps1
+    label: VPS1
+    kind: container-fleet
+    always_on: true
+    status: live
+    post_office: {doorbell: tray, interval_seconds: 60}     # a bridge runs once a minute; each agent has an in/ and an out/ tray
+    members: [container-agent-a, container-agent-b]
+  - id: vps3
+    label: VPS3
+    kind: harbor
+    always_on: true
+    status: planned          # designed and reviewed offline; post office not installed
+    post_office: {doorbell: pull}
+    members: [chatgpt, gemini, grok, claude-web]
+
+members:
+  - {id: claude-code-agent-a, kind: claude-code,    island: pc1,  doorbell: exact-session, can_send: true,  can_receive: true,  status: live}
+  - {id: codex-agent-a,       kind: codex,          island: pc1,  doorbell: exact-thread,  can_send: false, can_receive: true,  status: live}
+  - {id: claude-code-agent-b, kind: claude-code,    island: pc2,  doorbell: exact-session, can_send: true,  can_receive: true,  status: live}
+  - {id: chatgpt-app-agent-a, kind: chatgpt-app,  island: pc2,  doorbell: exact-thread,  can_send: false, can_receive: false, status: planned}   # hand test only; not live; the doorbell value is a placeholder because no doorbell is installed for this kind
+  - {id: container-agent-a,   kind: container-agent, island: vps1, doorbell: tray,        can_send: true,  can_receive: true,  status: live}
+  - {id: container-agent-b,   kind: container-agent, island: vps1, doorbell: tray,        can_send: true,  can_receive: true,  status: live}
+  - {id: chatgpt, kind: chatgpt,  island: vps3, doorbell: pull, can_send: false, can_receive: true, status: test-only, authority_of_answers: none}
+  - {id: gemini,  kind: gemini,   island: vps3, doorbell: pull, can_send: false, can_receive: true, status: test-only, authority_of_answers: none}
+  - {id: grok,    kind: grok,     island: vps3, doorbell: pull, can_send: false, can_receive: false, status: planned, authority_of_answers: none}
+  - {id: claude-web, kind: claude-web, island: vps3, doorbell: pull, can_send: false, can_receive: false, status: planned, authority_of_answers: none}
+
+routes:                      # any member may write to any member the route table allows
+  - {from: claude-code-agent-a, to: container-agent-a, ttl_seconds: 86400}
+  - {from: container-agent-a,   to: claude-code-agent-a, ttl_seconds: 86400}
+  - {from: claude-code-agent-b, to: container-agent-a, ttl_seconds: 86400}
+
+rules:
+  letters_are: data           # never orders; a letter cannot carry the owner's authority
+  saas_answers: channel-origin-no-authority
+  answers_admitted: one-per-call-id   # at most one admitted answer per call id; offline-tested, live fault drills pending
+  agents_delete: never
+  policy_signed_by: owner

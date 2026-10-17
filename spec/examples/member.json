@@ -1,0 +1,10 @@
+{
+  "id": "agent-b",
+  "kind": "container-agent",
+  "island": "vps1",
+  "doorbell": "tray",
+  "can_send": true,
+  "can_receive": true,
+  "status": "live",
+  "authority_of_answers": "normal"
+}
