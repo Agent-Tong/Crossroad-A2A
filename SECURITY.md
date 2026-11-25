@@ -1,6 +1,6 @@
 # Security policy
 
-Crossroad v0.2 is a working beta and a public reference, not a product. We still want to hear about security problems.
+Crossroad v0.2.1 is a working beta and a public reference, not a product. We still want to hear about security problems.
 
 ## Report a vulnerability privately
 

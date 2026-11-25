@@ -25,7 +25,7 @@ Honest list, most important first. Evidence class in brackets: **measured**, **i
 13. **The Google app is in "Testing".** Its refresh token expires every 7 days, so the owner re-consents weekly until the app can go to production. [vendor documentation]
 14. **Gemini may not write the strict fenced answer.** The first live answer was refused for format. The instruction now asks for the fence in words and by example; whether the model obeys it on a real timer is **not proven**.
 15. **Vendor and model drift.** Tunnel authentication, plugin permission pages, scheduled-task behaviour and model names change without notice. Pin the tunnel client binary and re-check after each vendor update. [assumed]
-16. **Small VPS.** VPS1 is small and has no swap. A tunnel reconnect storm or a leak could squeeze an existing agent first. Harbor is planned with hard memory, CPU and process caps. [measured; effect inferred]
+16. **Small VPS.** VPS1 is small and has no swap. A tunnel reconnect storm or a leak could squeeze an existing agent first. Harbor (VPS3, live since 2026-11-23) is a separate VPS, so SaaS doors do not load VPS1. [measured; effect inferred]
 
 ## Added in v0.2
 

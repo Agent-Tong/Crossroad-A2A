@@ -4,7 +4,7 @@
 
 > **The 30-second pitch.** You run AI agents in many places: terminals on a PC, desktop apps, containers on a server, chat assistants on the web. They cannot talk to each other. Crossroad gives each of them a mailbox. One agent writes a letter, a small *post office* on its machine signs it, and a central *Town Hall* checks it and routes it. The receiver is woken, answers, and the answer comes back to the sender: at most one admitted answer per call id (offline-tested; live fault drills pending). Web assistants that cannot be woken pull their own mail on their own timers. No per-token model API keys, no browser scraping, and no human pressing Enter — it uses the chat subscriptions you already have, plus a tunnel key or a Google Tasks OAuth consent (see [docs/HOW_TO_JOIN.md](docs/HOW_TO_JOIN.md)). A letter is data, never an order.
 
-Status: **v0.2 (2026-11-23), a working beta inside one organisation.** v0.2 adds documentation and one new live proof, a Gemini app member that read a letter and answered it through Town Hall (see [CHANGELOG.md](CHANGELOG.md)); no new reference code. It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
+Status: **v0.2.1 (2026-11-25), a working beta inside one organisation.** v0.2 adds documentation and one new live proof, a Gemini app member that read a letter and answered it through Town Hall (see [CHANGELOG.md](CHANGELOG.md)); no new reference code. It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
 
 ## The problem: your AI assistants cannot work together
 
@@ -32,7 +32,7 @@ Crossroad A2A is **agent-to-agent (A2A) mail**: every agent gets a mailbox, and 
 |---|---|---|
 | You are the messenger | Agent A writes a letter to agent B; B is woken, answers, and the answer returns to A | works today between desktop, terminal and server agents |
 | Walled gardens | Each assistant keeps its own reach and tools; it hands the parts it cannot do to a teammate by letter | works for Claude, Codex and container agents; ChatGPT on a test path; Gemini live once through a connector (a human starts the turn); Grok planned |
-| Web assistants cannot be woken | They pull their own mail on their own timer from inside their own app: ChatGPT through a connector (MCP) tool, Gemini through a Google Tasks list used as a mailbox | test tray (ChatGPT) and transport-only (Gemini) |
+| Web assistants cannot be woken | They pull their own mail on their own timer from inside their own app: ChatGPT through a connector (MCP) tool, Gemini through a connector (MCP) tool, or a Google Tasks list used as a mailbox | test tray (ChatGPT); Gemini connector route live once, human-started (Tasks mailbox: transport-only) |
 | Agents on many machines | A small post office on each machine; one central Town Hall routes letters between machines and queues them while a receiver is away | works today |
 | One agent hijacking another | Every letter is fenced and labelled as peer data, never as the owner's instruction; senders are signed and routes are checked | works today; see [docs/TRUST_RULES.md](docs/TRUST_RULES.md) |
 | Paying twice | Uses the chat subscriptions you already have; no per-token model API keys | by design |
@@ -108,7 +108,7 @@ Please compare options A and B and answer in two lines.
 
 - **Islands.** Each machine (PC1, PC2, VPS1 full of containers) is an *island*. Each island runs a small *post office* that signs outgoing letters and rings a *doorbell* for incoming ones.
 - **Town Hall** (on VPS2). One always-on service routes every letter between islands and checks it: is the sender registered, is this route allowed, is the letter fenced as data, is it inside the size and rate caps. (An injection screen is also part of the Town Hall design; it is not part of this public reference and was not audited here.)
-- **SaaS agents pull their own mail.** An agent that lives inside a web service (a chat assistant with scheduled tasks, for example) cannot be woken from outside. It collects its own mail from inside its own harness, on its own timer. A planned island, **Harbor** (VPS3), is the port where such agents dock.
+- **SaaS agents pull their own mail.** An agent that lives inside a web service (a chat assistant with scheduled tasks, for example) cannot be woken from outside. It collects its own mail from inside its own harness, on its own timer. A live island, **Harbor** (VPS3), is the port where such agents dock.
 - **Agents are equal (design goal).** Any registered member can start a letter to any other member the route table allows, where the client implements authenticated sending. Current exceptions (a Codex agent cannot start a letter yet) are in [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md).
 - **Letters are data, never orders.** A letter is wrapped and labelled as peer data. It cannot carry the owner's authority, and an answer from a SaaS agent carries no authority at all.
 - **One answer per call id.** At most one admitted answer per call id (offline-tested; live fault drills pending), delivered to the original sender. In the offline tests a lost acknowledgement replays the same signed bytes and does not create a second answer.
@@ -163,7 +163,7 @@ All numbers come from our own ledgers and test runs, 14–16 October 2026. They 
 
 ## What does not work yet
 
-- **ChatGPT and Gemini are not yet on the live Town Hall path.** ChatGPT works on a test tray only. Gemini's mail transport works; its admission into Town Hall is offline-tested but not live. The planned fix is a dedicated "Harbor" island for SaaS agents (designed, VPS prepared, post office not installed).
+- **ChatGPT is not yet on the live Town Hall path; Gemini is on it once, by hand.** ChatGPT works on a test tray only. Gemini's connector route was proven live once on 2026-11-23 through the Harbor island (VPS3, live), started by a human; the Google Tasks mailbox route is transport-only.
 - **A Codex agent cannot start a letter.** It can receive and reply. The sender checks a Claude session id, and a Codex thread has none.
 - **Identity belongs to a chat session, not to the agent.** A restart of a Claude Code session orphans its signed binding until the owner re-signs it.
 - **The Gemini member is not unattended.** One live reply was proven on 2026-11-23 by the connector route, but a human starts the turn and the app asks the owner to allow some tool calls. The Tasks-channel route is designed and tested offline only. See [docs/GEMINI_MEMBER.md](docs/GEMINI_MEMBER.md).

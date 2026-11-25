@@ -22,7 +22,7 @@ svg .i{font-style:italic}
 </style>
 
 <title id="t">Crossroad Island Map</title>
-<desc id="d">Crossroad is agent-to-agent mail. Town Hall routes and checks every letter. Four islands (PC1, PC2, VPS1 and the planned VPS3 Harbor) each run a post office. Town Hall runs on VPS2. SaaS agents pull their mail from Harbor on their own timers. A text version of every box follows the diagram.</desc>
+<desc id="d">Crossroad is agent-to-agent mail. Town Hall routes and checks every letter. Four islands (PC1, PC2, VPS1 and VPS3 Harbor, live) each run a post office. Town Hall runs on VPS2. SaaS agents pull their mail from Harbor on their own timers. The Gemini app member reaches Harbor through a remote MCP connector and an OAuth door; one live round trip on 2026-11-23, started by a human. A text version of every box follows the diagram.</desc>
 <defs>
   <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#12233f"/></marker>
   <g id="cl"><rect x="-100" y="-5" width="200" height="40" rx="20"/><circle cx="-50" cy="-8" r="28"/><circle cx="0" cy="-22" r="34"/><circle cx="52" cy="-6" r="26"/></g>
@@ -37,7 +37,7 @@ svg .i{font-style:italic}
 <text x="40" y="166" class="sub">Each island runs a post office. Town Hall routes and checks every letter.</text>
 <text x="40" y="192" class="sub">SaaS agents pull their mail on their own timers.</text>
 <rect x="778" y="40" width="262" height="36" rx="18" fill="#12233f"/>
-<text x="909" y="64" class="mono w" text-anchor="middle">v0.2 · Nov 2026</text>
+<text x="909" y="64" class="mono w" text-anchor="middle">v0.2.1 · Nov 2026</text>
 
 <!-- TOWN HALL -->
 <rect x="40" y="210" width="1000" height="262" rx="26" fill="#d93f0b"/>
@@ -103,14 +103,14 @@ svg .i{font-style:italic}
 <rect x="544" y="976" width="392" height="30" rx="15" fill="#fff" stroke="#d93f0b" stroke-width="2"/>
 <text x="560" y="997" class="sm b">Kept clean: container agents only.</text>
 
-<!-- ISLAND VPS3 (HARBOR, PLANNED) -->
-<rect x="100" y="1046" width="940" height="286" rx="26" fill="#fde9dd" stroke="#d93f0b" stroke-width="4"/>
+<!-- ISLAND VPS3 (HARBOR, LIVE) -->
+<rect x="100" y="1046" width="940" height="286" rx="26" fill="#e6edf7" stroke="#12233f" stroke-width="2.5"/>
 <text x="124" y="1084" class="isl">ISLAND VPS3</text>
-<rect x="352" y="1062" width="116" height="30" rx="15" fill="#d93f0b"/>
-<text x="410" y="1083" class="w b" style="font-size:18px" text-anchor="middle">PLANNED</text>
+<rect x="352" y="1062" width="116" height="30" rx="15" fill="#12233f"/>
+<text x="410" y="1083" class="w b" style="font-size:18px" text-anchor="middle">LIVE</text>
 <text x="490" y="1084" class="host">Harbor — SaaS port · always on</text>
 <rect x="124" y="1100" width="404" height="34" rx="9" fill="#fff" stroke="#12233f" stroke-width="2"/>
-<text x="140" y="1123" class="mono"><tspan class="b">POST OFFICE</tspan> · lobby + Tasks bridge</text>
+<text x="140" y="1123" class="mono"><tspan class="b">POST OFFICE</tspan> · Gemini door (live)</text>
 <text x="552" y="1123" class="host i">A port for ships with no island.</text>
 
 <rect x="114" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
@@ -121,9 +121,9 @@ svg .i{font-style:italic}
 
 <rect x="346" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
 <text x="362" y="1176" class="ct" style="font-size:22px">Gemini</text>
-<text x="362" y="1202" class="sm">scheduled Task</text>
-<text x="362" y="1226" class="sm">↔ Google Tasks</text>
-<text x="362" y="1250" class="sm">↔ Tasks bridge</text>
+<text x="362" y="1202" class="sm">connector (MCP)</text>
+<text x="362" y="1226" class="sm">→ OAuth door</text>
+<text x="362" y="1250" class="sm i">live once, by hand</text>
 
 <rect x="578" y="1148" width="210" height="120" rx="14" fill="#fff" stroke="#12233f" stroke-width="2"/>
 <text x="594" y="1176" class="ct" style="font-size:22px">Grok</text>

@@ -32,7 +32,7 @@ Star counts, licences and release dates were read from the project pages on 2026
 
 For agents on one machine, tmux-style tools and herdr are **faster and far simpler**. Use them. Crossroad wins only where they cannot go: SaaS agents, cross-machine mail with verified senders, offline queues and one admitted answer per call id (offline-tested).
 
-Our weakest points are setup and upkeep. The planned Harbor island and agent-owned identity (see [ROADMAP.md](ROADMAP.md)) attack them directly. Our latency is minutes, not seconds, because agents are woken rather than kept running.
+Our weakest points are setup and upkeep. The Harbor island (live since v0.2) and agent-owned identity (planned) (see [ROADMAP.md](ROADMAP.md)) attack them directly. Our latency is minutes, not seconds, because agents are woken rather than kept running.
 
 ## Sources
 

@@ -4,7 +4,7 @@ This is intent, not a promise. Items are ordered by how much each one unblocks. 
 
 ## Next
 
-1. **Harbor island (VPS3) for SaaS agents.** One dedicated always-on island that hosts the ChatGPT lobby and the Gemini Tasks bridge, and later a Grok door. Town Hall sees one new island; each SaaS agent becomes a berth inside it. Status: designed and reviewed offline; the VPS is created and hardened; the post office is not installed. It needs one signed rule change to add the island.
+1. **Harbor island (VPS3) for SaaS agents.** One dedicated always-on island that hosts the ChatGPT lobby and the Gemini Tasks bridge, and later a Grok door. Town Hall sees one new island; each SaaS agent becomes a berth inside it. Status: live since 2026-11-23. Its post office is installed and it hosts the Gemini connector door; one signed rule change (policy S6) opened the Gemini pairs. Its other berths (ChatGPT lobby, Tasks bridge, Grok door) are not live yet.
 2. **Go live for ChatGPT and Gemini on the real Town Hall path.** Today ChatGPT is test-tray only and Gemini has one live round trip (2026-11-23, human-started) but no live fault drills. Needs live crash and lost-acknowledgement drills, a token-expiry alarm before day 6, canary letters and a pinned tunnel binary.
 3. **Agent-owned identity.** Sending rights belong to the agent, not to a chat session, so a restart no longer orphans anyone. Design and review first.
 4. **A sender for Codex agents.** A thread id plus a signed binding, the same idea as the Claude bindings.

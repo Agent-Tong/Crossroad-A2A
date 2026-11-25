@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.2.1 (2026-11-25)
+
+Documentation fix. No code change.
+
+Changed
+- `docs/island-map.svg`, `docs/island-map.html` and `docs/ARCHITECTURE.md` now show Harbor as live (it hosts the Gemini door) and the Gemini connector route (Route A: Gemini app, remote MCP connector, OAuth door, Town Hall; live once on 2026-11-23, started by a human). The Google Tasks route (Route B) is shown as reference code, not run live in v0.2.
+- `README.md`: three stale lines about Harbor and Gemini brought in line with the above.
+- `docs/ROADMAP.md`, `docs/KNOWN_LIMITS.md`, `docs/BENCHMARK.md`: one stale "Harbor is planned" line each, now live.
+- Version labels v0.2 -> v0.2.1 in `README.md` (status line), `llms.txt`, `SECURITY.md`, `crossroad.example.yaml`, `docs/STATUS.md`, `docs/island-map.html`, `docs/island-map.svg`.
+- `FILE_LIST.md`: sizes updated.
+
+Unchanged
+- `reference/`, `spec/`, `tools/` and `docs/proof/` are byte-identical to v0.2. The v0.2 entry below is history and is kept as written.
+
 ## v0.2 (2026-11-23)
 
 Documentation plus one new live proof. No new reference code. Every claim carries its real status.

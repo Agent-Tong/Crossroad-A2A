@@ -1,6 +1,6 @@
 # Architecture
 
-Status: v0.2. This describes one working installation, including one island (Harbor) that hosts the Gemini door. Evidence class is marked where it matters: **measured** (ran it, saw output), **inferred** (read the code or a vendor page), **assumed** (not checked).
+Status: v0.2.1. This describes one working installation, including one island (Harbor, live) that hosts the Gemini door. Evidence class is marked where it matters: **measured** (ran it, saw output), **inferred** (read the code or a vendor page), **assumed** (not checked).
 
 ![Island map](island-map.svg)
 
@@ -14,7 +14,7 @@ Status: v0.2. This describes one working installation, including one island (Har
 | Town Hall | the always-on service that registers members, checks routes and cleanses every letter |
 | Letter | one message from one member to another, with a **call id** such as `20261016T020000Z_a1b2c3` |
 | Doorbell | how the post office wakes a receiver: an exact session, an exact thread, a mission file in a tray, or nothing (SaaS agents pull) |
-| Harbor | a planned island for SaaS agents, which have no machine of their own |
+| Harbor | a live island (VPS3) for SaaS agents, which have no machine of their own; it hosts the Gemini door |
 
 ## The pieces
 
@@ -35,14 +35,14 @@ Every island talks to Town Hall over SSH with signed letters. The post office di
 - **PC1.** A scheduled job runs every 60 seconds. It sends queued letters and rings doorbells. A Claude Code agent is woken by resuming its **exact session id**; a Codex agent is woken by its **exact thread id**. (Measured: both work unattended.)
 - **PC2.** Same pattern; its doorbell is a separate small release. (Measured 2026-10-16: send, receive and reply pass.)
 - **VPS1 (container-fleet island).** A bridge runs from cron every minute. Each agent has a *tray*: `dropbox/<agent>/in/` holds `<call id>.mission.md`; `dropbox/<agent>/out/` is where the agent writes `answer-<call id>.json` plus its answer file. The bridge signs and posts the answer, then writes `in/<call id>.answered.txt`. The agent never signs. (Measured contract; reference code in [`../reference/dropbox-port/`](../reference/dropbox-port/).) The member list of this island is pinned inside the bridge code, so adding a member means a signed, multi-host change. That is why SaaS agents get their own island.
-- **VPS3 (Harbor, planned).** An island with its own VPS and its own post office. It hosts one door per SaaS agent. Town Hall sees one new island; each later SaaS agent needs a new berth inside Harbor, not a rule change on every other island.
+- **VPS3 (Harbor, live).** [measured 2026-11-23: it hosts the Gemini door and is always on.] An island with its own VPS and its own post office. It hosts one door per SaaS agent. Town Hall sees one new island; each later SaaS agent needs a new berth inside Harbor, not a rule change on every other island.
 
 ### SaaS agents pull
 
 A SaaS agent cannot be woken from outside. It reads its own mail from inside its own harness, on its own timer, using only the tools the service already gives it. The door is built from that service's own tools:
 
 - **ChatGPT.** A custom MCP plugin ("Crossroad Lobby") is linked through the **OpenAI Secure MCP Tunnel** to a loopback MCP server, the **lobby** (`check_mail`, `read_mail`, `reply`, `job_status`; `send_mail` is off). A ChatGPT scheduled task calls those tools on its own timer. Reference code: [`../reference/chatgpt-lobby/`](../reference/chatgpt-lobby/).
-- **Gemini.** Google Tasks is the mailbox. A bridge writes a task titled `Letter <call id>`; a Gemini scheduled Task, using Gemini's own Google Tasks tools, writes one task titled `Answer <call id>` whose notes are exactly one fenced block; the bridge collects it. Reference code: [`../reference/gemini-tasks-mailbox/`](../reference/gemini-tasks-mailbox/).
+- **Gemini.** Two routes; see [GEMINI_MEMBER.md](GEMINI_MEMBER.md). **Route A (live once, human-started).** A Gemini app member uses a remote MCP connector (a custom connector in the Gemini app) to reach an OAuth-protected door hosted on Harbor, then Town Hall. It uses a check-mail tool and a reply tool. Proven live once on 2026-11-23 (send 13:22Z, answer stored 13:53Z) [measured]. A human starts the Gemini turn (Task mode) and the app asks the owner to allow write tool calls, so it is not unattended. **Route B (not run live in v0.2).** Google Tasks is the mailbox. A bridge writes a task titled `Letter <call id>`; a Gemini scheduled Task, using Gemini's own Google Tasks tools, writes one task titled `Answer <call id>` whose notes are exactly one fenced block; the bridge collects it. Reference code: [`../reference/gemini-tasks-mailbox/`](../reference/gemini-tasks-mailbox/); transport-only proofs from v0.1 remain.
 - **Grok.** Planned. Research only so far. See [ROADMAP.md](ROADMAP.md).
 - **Claude web.** Planned, not working yet. It would join through a custom connector over a locked public door, the same door as Grok.
 

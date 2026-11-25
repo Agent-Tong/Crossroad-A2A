@@ -1,4 +1,4 @@
-# Status (v0.2)
+# Status (v0.2.1)
 
 The numbers below are the v0.1 measurements of 14-16 October 2026, kept unchanged. v0.2 adds one live measurement, on 2026-11-23; see the section "v0.2: what is proven live" at the end.
 

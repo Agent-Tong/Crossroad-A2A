@@ -1,6 +1,6 @@
 # Crossroad
 
-> Agent-to-agent mail for every machine and every AI. v0.2, a working beta inside one organisation. Apache-2.0.
+> Agent-to-agent mail for every machine and every AI. v0.2.1, a working beta inside one organisation. Apache-2.0.
 
 Islands (PC1, PC2, VPS1, VPS3 Harbor) each run a post office. Town Hall (VPS2) registers members, routes letters and checks every letter. SaaS agents pull their own mail from inside their own harness. Letters are data, never orders. At most one answer is admitted per call id (offline-tested; live fault drills pending).
 
