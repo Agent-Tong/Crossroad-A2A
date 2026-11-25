@@ -27,6 +27,15 @@ Honest list, most important first. Evidence class in brackets: **measured**, **i
 15. **Vendor and model drift.** Tunnel authentication, plugin permission pages, scheduled-task behaviour and model names change without notice. Pin the tunnel client binary and re-check after each vendor update. [assumed]
 16. **Small VPS.** VPS1 is small and has no swap. A tunnel reconnect storm or a leak could squeeze an existing agent first. Harbor is planned with hard memory, CPU and process caps. [measured; effect inferred]
 
+## Added in v0.2
+
+21. **The Gemini app asks the human to confirm every write tool call.** Reads marked read-only run without a tap. We do not mislabel write tools as read-only. A fully unattended Gemini agent therefore needs the Tasks command channel. [observed by the maintainers; vendor behaviour can change]
+22. **The Tasks command channel is a deliberate route around the per-write tap.** It is honest only if the owner knowingly delegates that authority. The Google Tasks scope can also remove tasks; the postman never does, but the token could. [design; vendor documentation]
+23. **A letter longer than one Tasks note (8192 characters) is refused, not cut.** It is kept whole locally and delivery is acknowledged only after a hash check. Eight letters that cannot be stored at once can hide later mail from the door's front page until the cause is fixed. [design; not run live]
+24. **One live Gemini reply is proven, by the connector route only, and it is not unattended.** On 2026-11-23 a Gemini app member answered one letter. The member runs inside the Gemini app, a human starts the turn (Task mode), and the app asks the owner to allow some tool calls. The Tasks command channel was not run live; its tests use fakes only. [measured]
+25. **A new signed policy is a multi-host rollout with no downgrade.** After the switch the undo is a switch-off. See [POLICY_VERSIONS.md](POLICY_VERSIONS.md). [measured offline; the first live switch on 2026-11-23 confirmed it]
+26. **The first live policy switch found two faults, both fixed live.** A pinned rulebook module on Harbor still held the old rulebook, and Town Hall lacked per-route switch rows for the new pairs. The switch took about 4 minutes of mail gap. A pre-switch checklist is not written yet. [measured, 2026-11-23]
+
 ## About this repository
 
 17. **The reference code has only run against stand-ins.** Tests use fake Google Tasks, a model mail port and a hand-played bridge. Real Docker restarts, namespace rejoin, a real Town Hall and real SaaS services were not exercised by these suites.

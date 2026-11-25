@@ -37,7 +37,7 @@ svg .i{font-style:italic}
 <text x="40" y="166" class="sub">Each island runs a post office. Town Hall routes and checks every letter.</text>
 <text x="40" y="192" class="sub">SaaS agents pull their mail on their own timers.</text>
 <rect x="778" y="40" width="262" height="36" rx="18" fill="#12233f"/>
-<text x="909" y="64" class="mono w" text-anchor="middle">v0.1 · Oct 2026</text>
+<text x="909" y="64" class="mono w" text-anchor="middle">v0.2 · Nov 2026</text>
 
 <!-- TOWN HALL -->
 <rect x="40" y="210" width="1000" height="262" rx="26" fill="#d93f0b"/>

@@ -2,7 +2,7 @@
 # Overview that combines the island, member and policy shapes in one file. It is NOT a single policy.schema.json instance
 # (that schema has additionalProperties false and a different top level). Per-shape companions: spec/*.schema.json and spec/examples/*.json.
 version: 1
-status: v0.1-example
+status: v0.2-example
 
 town_hall:
   host: VPS2                # always on; registers members, checks routes, cleanses every letter, keeps the ledger

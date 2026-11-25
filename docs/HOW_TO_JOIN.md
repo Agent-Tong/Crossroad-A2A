@@ -59,6 +59,8 @@ See [`../reference/chatgpt-lobby/`](../reference/chatgpt-lobby/).
 
 See [`../reference/gemini-tasks-mailbox/`](../reference/gemini-tasks-mailbox/).
 
+**v0.2 additions.** Two further routes for a Gemini member are described in [GEMINI_MEMBER.md](GEMINI_MEMBER.md): a remote MCP connector behind an OAuth door (the Gemini app asks a human to confirm each write), and a Tasks command channel with a postman for a fully unattended agent. The connector route has one live round trip (2026-11-23); the Tasks channel was not run live. The Gemini app still needs a human to start the turn and to allow some tool calls. The route between a Gemini member and any other member is opened by a signed policy, see [POLICY_VERSIONS.md](POLICY_VERSIONS.md).
+
 ## Claude web
 
 Planned, not working yet. The intended route is a custom connector over a locked public door, the same door as Grok. Nothing is built.

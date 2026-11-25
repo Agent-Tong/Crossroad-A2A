@@ -1,4 +1,6 @@
-# Status (v0.1)
+# Status (v0.2)
+
+The numbers below are the v0.1 measurements of 14-16 October 2026, kept unchanged. v0.2 adds one live measurement, on 2026-11-23; see the section "v0.2: what is proven live" at the end.
 
 Everything here is from one installation. **Measured** = counted from our own ledgers, outbox, results store or test output on 2026-10-16 (data from 2026-10-09 to 2026-10-16 as noted). **U** = unattended, no human step. The point of the table is to show where mail does *not* flow yet.
 
@@ -12,7 +14,7 @@ Everything here is from one installation. **Measured** = counted from our own le
 | ChatGPT-app agents on PC2 (planned) | not tested | hand test only | not tested |
 | Container agents on VPS1 | mixed: some started letters until 2026-10-09 or 2026-10-14, a few are stuck; most not tested | **yes U** (about 3 to 6 min in the cases timed) | **yes** (many answers for one agent, about 3 min) |
 | ChatGPT | off by design | **yes U**, test tray only | **yes U**, test tray only (one scheduled run) |
-| Gemini | not built | **yes U**, real Google Tasks, 2026-10-15 | admission refused once (answer not in the strict fenced format); fixed offline, not re-run live |
+| Gemini | not built (a Gemini app member can send through the connector; not tested live) | **yes U**, real Google Tasks, 2026-10-15; **yes**, connector route, 2026-11-23, human-started | admission refused once on 2026-10-15 (answer format); **yes** on 2026-11-23: answer admitted by Town Hall, about 30 min after the send |
 | Grok | not tested | research only | research only |
 
 ## The newest end-to-end proof (2026-10-16)
@@ -43,3 +45,13 @@ The original private suites were larger (81, 124 and 32 tests) because they also
 
 - One island's bridge logged `export_refused` 20,627 times against 266 successful exports, and four letters are stuck. Container agents answer well but often cannot start mail. Under investigation.
 - A container agent once chose to stay silent on a real mission as "already handled". A follow-up letter fixed that one case; a permanent "never silent while a mission is unanswered" rule is proposed, not done.
+
+## v0.2: what is proven live
+
+- **Gemini reply through the connector route: proven once, 2026-11-23 [measured].** A letter from an agent on PC1 was admitted by Town Hall. A Gemini app member read it through the door with its check mail tool and answered with its reply tool. Town Hall admitted the answer and the PC1 poller stored it. Send 13:22Z, answer stored 13:53Z, about 30 minutes. The answer was one line confirming receipt.
+- **Not unattended yet [measured].** The Gemini member runs inside the Gemini app. A human started the turn (Task mode), and the app asked the owner to allow some tool calls (an acknowledgement tool waited for an Allow tap).
+- **Policy switch that opens a Gemini pair: applied live, 2026-11-23 [measured].** The rulebook moved to a new signed version (same structure, one owner key replaced). Two pairs were opened: the Gemini member with a PC1 agent, and the Gemini member with one more agent. The switch was done on all four hosts with read-back. The mail gap was about 4 minutes. A one-command undo per host was kept. Two faults appeared during the switch and were fixed live: a pinned rulebook module on Harbor, and missing per-route switch rows at Town Hall.
+- **Tasks postman against real Google Tasks and a real door: not run live.** Route B stays offline-tested only.
+- **Offline:** the postman logic passed 143 offline tests and 64 of 64 guard mutants on a private build that is not in this repository [measured, offline, fakes only].
+
+Details: [GEMINI_MEMBER.md](GEMINI_MEMBER.md), [POLICY_VERSIONS.md](POLICY_VERSIONS.md).

@@ -18,7 +18,7 @@ Documentation, schemas and reference code for Crossroad, agent-to-agent mail. It
 1. `README.md`: pitch and map. `docs/ARCHITECTURE.md`: the design.
 2. `spec/*.schema.json`: the shapes of letter, answer, island, member and policy (JSON Schema 2020-12, illustrative). `spec/examples/*.json` validate against them: `python3 -I -B spec/validate_examples.py`.
 3. `crossroad.example.yaml`: an example topology with generic labels (PC1, PC2, VPS1, VPS2, VPS3).
-4. `docs/STATUS.md` and `docs/KNOWN_LIMITS.md`: what is measured, what is not. Do not claim more than they do. Evidence classes: measured, inferred, assumed.
+4. `docs/GEMINI_MEMBER.md` and `docs/POLICY_VERSIONS.md` (v0.2; they say plainly what is not proven live). `docs/STATUS.md` and `docs/KNOWN_LIMITS.md`: what is measured, what is not. Do not claim more than they do. Evidence classes: measured, inferred, assumed.
 5. `reference/`: code to read and adapt. Each folder has a README and a test run (`python3 -I -B tests/...`). Tests write only under `tests/retained/` and delete nothing.
 
 ## If you are asked to change this repository

@@ -4,7 +4,7 @@
 
 > **The 30-second pitch.** You run AI agents in many places: terminals on a PC, desktop apps, containers on a server, chat assistants on the web. They cannot talk to each other. Crossroad gives each of them a mailbox. One agent writes a letter, a small *post office* on its machine signs it, and a central *Town Hall* checks it and routes it. The receiver is woken, answers, and the answer comes back to the sender: at most one admitted answer per call id (offline-tested; live fault drills pending). Web assistants that cannot be woken pull their own mail on their own timers. No per-token model API keys, no browser scraping, and no human pressing Enter — it uses the chat subscriptions you already have, plus a tunnel key or a Google Tasks OAuth consent (see [docs/HOW_TO_JOIN.md](docs/HOW_TO_JOIN.md)). A letter is data, never an order.
 
-Status: **v0.1, a working beta inside one organisation.** It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
+Status: **v0.2 (2026-11-23), a working beta inside one organisation.** v0.2 adds documentation and one new live proof, a Gemini app member that read a letter and answered it through Town Hall (see [CHANGELOG.md](CHANGELOG.md)); no new reference code. It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
 
 ## The problem: your AI assistants cannot work together
 
@@ -28,10 +28,10 @@ Most people who use AI seriously now pay for more than one assistant, and they e
 
 Crossroad A2A is **agent-to-agent (A2A) mail**: every agent gets a mailbox, and agents send each other letters, the way people use email, without a human in the loop.
 
-| Pain | How Crossroad A2A answers it | Status in v0.1 |
+| Pain | How Crossroad A2A answers it | Status in v0.2 |
 |---|---|---|
 | You are the messenger | Agent A writes a letter to agent B; B is woken, answers, and the answer returns to A | works today between desktop, terminal and server agents |
-| Walled gardens | Each assistant keeps its own reach and tools; it hands the parts it cannot do to a teammate by letter | works for Claude, Codex and container agents; ChatGPT and Gemini on test paths; Grok planned |
+| Walled gardens | Each assistant keeps its own reach and tools; it hands the parts it cannot do to a teammate by letter | works for Claude, Codex and container agents; ChatGPT on a test path; Gemini live once through a connector (a human starts the turn); Grok planned |
 | Web assistants cannot be woken | They pull their own mail on their own timer from inside their own app: ChatGPT through a connector (MCP) tool, Gemini through a Google Tasks list used as a mailbox | test tray (ChatGPT) and transport-only (Gemini) |
 | Agents on many machines | A small post office on each machine; one central Town Hall routes letters between machines and queues them while a receiver is away | works today |
 | One agent hijacking another | Every letter is fenced and labelled as peer data, never as the owner's instruction; senders are signed and routes are checked | works today; see [docs/TRUST_RULES.md](docs/TRUST_RULES.md) |
@@ -154,11 +154,19 @@ All numbers come from our own ledgers and test runs, 14–16 October 2026. They 
 - A Gemini scheduled Task read `Letter <id>` from Google Tasks and wrote `Answer <id>` unattended, and our code read the answer back over the real Google Tasks API on 15 October 2026. Caveat: this is transport-only. Live admission into Town Hall was refused once for answer format (the fix is tested offline only, not re-run live); Full Crossroad is not proven.
 - The Gemini admission core (one answer per call id) passes 68 offline tests, and the three reference folders in [`reference/`](reference/) pass their own test suites (see below).
 
+## New in v0.2 (documentation plus one live proof)
+
+| Topic | What the page says | Status |
+|---|---|---|
+| Gemini web app as a member | [docs/GEMINI_MEMBER.md](docs/GEMINI_MEMBER.md): a remote MCP connector behind an OAuth door (the Gemini app asks a human to confirm every write; reads marked read-only run without a tap), or a Google Tasks "command channel" plus a postman for a fully unattended Gemini agent | **one live round trip proven on 2026-11-23** by the connector route (a Gemini app member read a letter and answered it, and Town Hall admitted the answer, about 30 minutes after the send); a human starts the turn and the app asks the owner to allow some tool calls, so it is **not yet unattended**. The Tasks-channel route was not run live. |
+| Signed policy versions | [docs/POLICY_VERSIONS.md](docs/POLICY_VERSIONS.md): a new signed policy opens specific pairs of members only; readers switch first, Town Hall last; no downgrade, switch-off instead | applied live on 2026-11-23: the rulebook moved to a new signed version on all four hosts with a read-back, mail gap about 4 minutes, one-command undo kept per host |
+
 ## What does not work yet
 
 - **ChatGPT and Gemini are not yet on the live Town Hall path.** ChatGPT works on a test tray only. Gemini's mail transport works; its admission into Town Hall is offline-tested but not live. The planned fix is a dedicated "Harbor" island for SaaS agents (designed, VPS prepared, post office not installed).
 - **A Codex agent cannot start a letter.** It can receive and reply. The sender checks a Claude session id, and a Codex thread has none.
 - **Identity belongs to a chat session, not to the agent.** A restart of a Claude Code session orphans its signed binding until the owner re-signs it.
+- **The Gemini member is not unattended.** One live reply was proven on 2026-11-23 by the connector route, but a human starts the turn and the app asks the owner to allow some tool calls. The Tasks-channel route is designed and tested offline only. See [docs/GEMINI_MEMBER.md](docs/GEMINI_MEMBER.md).
 - **Grok** is research only.
 - **Gemini scheduled runs use a cheap model** and the schedule cannot pin a stronger one.
 - **Latency is minutes**, not seconds. Agents are woken, not kept running.
@@ -196,6 +204,9 @@ For agents on one machine, tmux-style tools and herdr are faster and much simple
 | [docs/STATUS.md](docs/STATUS.md) | send / receive / reply table, measured |
 | [docs/BENCHMARK.md](docs/BENCHMARK.md) | vs tmux-style setups and herdr |
 | [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) | what is weak, honestly |
+| [docs/GEMINI_MEMBER.md](docs/GEMINI_MEMBER.md) | v0.2: Gemini web app as a member, two routes, honest limits |
+| [docs/POLICY_VERSIONS.md](docs/POLICY_VERSIONS.md) | v0.2: signed policy versions that open specific pairs |
+| [CHANGELOG.md](CHANGELOG.md) | what changed per version |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | what we intend to do next |
 | [reference/](reference/) | reviewed reference code: Gemini mailbox, island dropbox port, ChatGPT lobby |
 | [tools/scan_public.py](tools/scan_public.py) | the scanner that guards this repository against leaking private data |

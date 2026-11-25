@@ -1,21 +1,24 @@
 # File list
 
-Every file in this repository, with size in bytes and purpose. Generated 2026-10-16 UTC (staged copy r5).
+Every file in this repository, with size in bytes and purpose. Generated 2026-11-23 UTC (v0.2; the three v0.2 pages are new, the rest as v0.1 unless the Changelog says otherwise).
 
 | File | Bytes | Purpose |
 |---|---|---|
-| `AGENTS.md` | 2686 | how an AI agent should read and use the repository; the letter rules |
-| `FILE_LIST.md` | 7489 | this list |
+| `AGENTS.md` | 2790 | how an AI agent should read and use the repository; the letter rules |
+| `CHANGELOG.md` | 2513 | changes per version; v0.2 entry with the live proofs and the honest limits |
+| `FILE_LIST.md` | 7962 | this list |
 | `LICENSE` | 11357 | Apache License 2.0, standard text |
-| `README.md` | 18967 | front page: 30-second pitch, the problem (pain points) and how Crossroad A2A answers them, what each AI can and cannot do, relation to the A2A protocol, try-it commands, island map, letter journey with a worked example, proof (three screenshots), what works, what does not, comparison |
+| `README.md` | 20933 | front page: 30-second pitch, the problem (pain points) and how Crossroad A2A answers them, what each AI can and cannot do, relation to the A2A protocol, try-it commands, island map, letter journey with a worked example, proof (three screenshots), what works, what does not, comparison |
 | `SECURITY.md` | 1068 | how to report a vulnerability privately |
 | `crossroad.example.yaml` | 3812 | example topology with generic labels (PC1, PC2, VPS1, VPS2, VPS3) |
-| `docs/ARCHITECTURE.md` | 7168 | islands, Town Hall, post offices, doorbells, Harbor, letter in six steps, identity, one answer per call id |
+| `docs/ARCHITECTURE.md` | 7194 | islands, Town Hall, post offices, doorbells, Harbor, letter in six steps, identity, one answer per call id |
 | `docs/BENCHMARK.md` | 4724 | comparison with tmux-style setups and herdr, with public sources |
-| `docs/HOW_TO_JOIN.md` | 5740 | how each kind of agent joins (Claude Code, Codex, container agent, ChatGPT, Gemini, Grok) |
-| `docs/KNOWN_LIMITS.md` | 4206 | twenty known limits, with evidence class |
-| `docs/ROADMAP.md` | 2442 | what comes next, in order |
-| `docs/STATUS.md` | 4149 | send / receive / reply table and the newest end-to-end proofs, measured |
+| `docs/GEMINI_MEMBER.md` | 7712 | v0.2: Gemini web app as a member, connector route and Tasks command channel, one live round trip, honest limits, evidence table |
+| `docs/HOW_TO_JOIN.md` | 6333 | how each kind of agent joins (Claude Code, Codex, container agent, ChatGPT, Gemini, Grok) |
+| `docs/KNOWN_LIMITS.md` | 5990 | twenty-six known limits, with evidence class |
+| `docs/POLICY_VERSIONS.md` | 3363 | v0.2: signed policy versions that open specific pairs only, rollout order, no downgrade |
+| `docs/ROADMAP.md` | 3125 | what comes next, in order |
+| `docs/STATUS.md` | 6065 | send / receive / reply table and the newest end-to-end proofs, measured |
 | `docs/TRUST_RULES.md` | 7816 | the twelve rules every member follows, what enforces each, and the cryptographic, SSH and local-isolation boundaries |
 | `docs/island-map.html` | 18112 | island map page with a text version of the diagram |
 | `docs/island-map.svg` | 14047 | island map as a standalone SVG |
@@ -32,7 +35,7 @@ Every file in this repository, with size in bytes and purpose. Generated 2026-10
 | `docs/proof/gemini_web_3_timer_run.png` | 149412 | Gemini web: timer run result, Flash model (masked) |
 | `docs/proof/gemini_web_4_schedule_created.png` | 350991 | Gemini web: a one-time schedule being created, Flash model (masked) |
 | `docs/proof/telegram_app_1_agent_answers_demo.png` | 164417 | Telegram: an agent's own report of answering a demo letter (masked) |
-| `llms.txt` | 2714 | concise index for AI readers |
+| `llms.txt` | 3054 | concise index for AI readers |
 | `reference/chatgpt-lobby/README.md` | 5627 | what the ChatGPT lobby is, behaviour, secrets, what was left out |
 | `reference/chatgpt-lobby/chatgpt-lobby.profile.example.yaml` | 593 | example tunnel profile, placeholders only |
 | `reference/chatgpt-lobby/chatgpt.compose.example.yml` | 3599 | example two-container compose file (no published port) |
@@ -74,4 +77,4 @@ Every file in this repository, with size in bytes and purpose. Generated 2026-10
 | `tools/scan_public.py` | 14128 | stdlib scanner that fails on private data (IPs, emails, tokens, keys, ids, names); checks each PNG's structure and CRCs and scans its decoded text chunks |
 | `tools/test_scan_public.py` | 6362 | stdlib positive and negative controls for the scanner's PNG path (synthetic PNGs; the real proof images give 0 findings) |
 
-Total: 69 files, 2974875 bytes.
+Total: 72 files, 3000403 bytes.

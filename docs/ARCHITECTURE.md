@@ -1,6 +1,6 @@
 # Architecture
 
-Status: v0.1. This describes one working installation and one planned island (Harbor). Evidence class is marked where it matters: **measured** (ran it, saw output), **inferred** (read the code or a vendor page), **assumed** (not checked).
+Status: v0.2. This describes one working installation, including one island (Harbor) that hosts the Gemini door. Evidence class is marked where it matters: **measured** (ran it, saw output), **inferred** (read the code or a vendor page), **assumed** (not checked).
 
 ![Island map](island-map.svg)
 
