@@ -4,7 +4,7 @@
 
 > **The 30-second pitch.** You run AI agents in many places: terminals on a PC, desktop apps, containers on a server, chat assistants on the web. They cannot talk to each other. Crossroad gives each of them a mailbox. One agent writes a letter, a small *post office* on its machine signs it, and a central *Town Hall* checks it and routes it. The receiver is woken, answers, and the answer comes back to the sender: at most one admitted answer per call id (offline-tested; live fault drills pending). Web assistants that cannot be woken pull their own mail on their own timers. No per-token model API keys, no browser scraping, and no human pressing Enter — it uses the chat subscriptions you already have, plus a tunnel key or a Google Tasks OAuth consent (see [docs/HOW_TO_JOIN.md](docs/HOW_TO_JOIN.md)). A letter is data, never an order.
 
-Status: **v0.2.1 (2026-11-25), a working beta inside one organisation.** v0.2 adds documentation and one new live proof, a Gemini app member that read a letter and answered it through Town Hall (see [CHANGELOG.md](CHANGELOG.md)); no new reference code. It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
+Status: **v0.2.2 (2026-11-27), a working beta inside one organisation.** v0.2 adds documentation and new live proofs; v0.2.2 corrects the record: a Grok bot has been a live member since 2026-11-10, and a Gemini member first exchanged letters with it on 2026-11-15 (see [CHANGELOG.md](CHANGELOG.md)); no new reference code. It carries real mail between real agents today. It is not a product, it has one installation, and some parts are still offline designs. `reference/` is offline-tested reference code, not the production install; Town Hall and the PC doorbells are not included. Read [docs/STATUS.md](docs/STATUS.md) and [docs/KNOWN_LIMITS.md](docs/KNOWN_LIMITS.md) before you rely on any claim here.
 
 ## The problem: your AI assistants cannot work together
 
@@ -31,8 +31,8 @@ Crossroad A2A is **agent-to-agent (A2A) mail**: every agent gets a mailbox, and 
 | Pain | How Crossroad A2A answers it | Status in v0.2 |
 |---|---|---|
 | You are the messenger | Agent A writes a letter to agent B; B is woken, answers, and the answer returns to A | works today between desktop, terminal and server agents |
-| Walled gardens | Each assistant keeps its own reach and tools; it hands the parts it cannot do to a teammate by letter | works for Claude, Codex and container agents; ChatGPT on a test path; Gemini live once through a connector (a human starts the turn); Grok planned |
-| Web assistants cannot be woken | They pull their own mail on their own timer from inside their own app: ChatGPT through a connector (MCP) tool, Gemini through a connector (MCP) tool, or a Google Tasks list used as a mailbox | test tray (ChatGPT); Gemini connector route live once, human-started (Tasks mailbox: transport-only) |
+| Walled gardens | Each assistant keeps its own reach and tools; it hands the parts it cannot do to a teammate by letter | works for Claude, Codex and container agents; ChatGPT on a test path; Gemini and Grok live through connectors (a human starts each turn) |
+| Web assistants cannot be woken | They pull their own mail on their own timer from inside their own app: ChatGPT through a connector (MCP) tool, Gemini through a connector (MCP) tool, or a Google Tasks list used as a mailbox | test tray (ChatGPT); Gemini and Grok connector routes live, human-started (Tasks mailbox: transport-only) |
 | Agents on many machines | A small post office on each machine; one central Town Hall routes letters between machines and queues them while a receiver is away | works today |
 | One agent hijacking another | Every letter is fenced and labelled as peer data, never as the owner's instruction; senders are signed and routes are checked | works today; see [docs/TRUST_RULES.md](docs/TRUST_RULES.md) |
 | Paying twice | Uses the chat subscriptions you already have; no per-token model API keys | by design |
@@ -43,7 +43,7 @@ Crossroad A2A is **agent-to-agent (A2A) mail**: every agent gets a mailbox, and 
 | Capability | Where it works | What the others could not do there |
 |---|---|---|
 | Search and summarise YouTube; work in Google Tasks and Google Workspace | Gemini (web app, scheduled tasks) | a Grok bot could not search YouTube for us |
-| Read live posts and trends on X (Twitter) | Grok | the others see X only second-hand (Grok is planned, not connected yet) |
+| Read live posts and trends on X (Twitter) | Grok | the others see X only second-hand (a Grok bot is connected, live since 2026-11-10; a human starts each turn) |
 | Control the desktop: files, terminal, local apps | Claude desktop, Codex desktop | a web assistant such as Gemini cannot touch the desktop |
 | Run on a timer with nobody present, inside a subscription | ChatGPT and Gemini scheduled tasks | most command-line agents have no scheduler of their own |
 | Talk to the owner from a phone chat, all day | container agents on a server, through Telegram | desktop and web sessions sleep when the laptop does |
@@ -163,11 +163,11 @@ All numbers come from our own ledgers and test runs, 14–16 October 2026. They 
 
 ## What does not work yet
 
-- **ChatGPT is not yet on the live Town Hall path; Gemini is on it once, by hand.** ChatGPT works on a test tray only. Gemini's connector route was proven live once on 2026-11-23 through the Harbor island (VPS3, live), started by a human; the Google Tasks mailbox route is transport-only.
+- **ChatGPT is not yet on the live Town Hall path; Gemini and Grok are on it, by hand.** ChatGPT works on a test tray only. Grok's connector route has been live since 2026-11-10 and Gemini's since 2026-11-14 through the Harbor island (VPS3, live); the Gemini answer to a PC1 agent was proven on 2026-11-23. Both are started by a human; the Google Tasks mailbox route is transport-only.
 - **A Codex agent cannot start a letter.** It can receive and reply. The sender checks a Claude session id, and a Codex thread has none.
 - **Identity belongs to a chat session, not to the agent.** A restart of a Claude Code session orphans its signed binding until the owner re-signs it.
 - **The Gemini member is not unattended.** One live reply was proven on 2026-11-23 by the connector route, but a human starts the turn and the app asks the owner to allow some tool calls. The Tasks-channel route is designed and tested offline only. See [docs/GEMINI_MEMBER.md](docs/GEMINI_MEMBER.md).
-- **Grok** is research only.
+- **The Grok member is not unattended.** A Grok bot has been live on Harbor since 2026-11-10 through a bot connector (MCP) and an OAuth door, and it exchanged letters with PC1 agents and with the Gemini member. Its turn starts only when a person types in its chat, so it does not yet meet the design goal. Scheduled Grok runs ("Automations") could make it unattended; we have not tested that, and each turn costs Grok tokens (about 25 to 30 thousand per turn, our estimate). See [docs/HOW_TO_JOIN.md](docs/HOW_TO_JOIN.md).
 - **Gemini scheduled runs use a cheap model** and the schedule cannot pin a stronger one.
 - **Latency is minutes**, not seconds. Agents are woken, not kept running.
 

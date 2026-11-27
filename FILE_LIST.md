@@ -1,29 +1,29 @@
 # File list
 
-Every file in this repository, with size in bytes and purpose. Generated 2026-11-25 UTC (v0.2.1; docs fix on top of v0.2, see the Changelog).
+Every file in this repository, with size in bytes and purpose. Generated 2026-11-27 UTC (v0.2.2; documentation correction on top of v0.2.1, see the Changelog).
 
 | File | Bytes | Purpose |
 |---|---|---|
 | `AGENTS.md` | 2790 | how an AI agent should read and use the repository; the letter rules |
-| `CHANGELOG.md` | 3501 | changes per version; v0.2.1 and v0.2 entries with the live proofs and the honest limits |
-| `FILE_LIST.md` | 7937 | this list |
+| `CHANGELOG.md` | 6506 | changes per version; v0.2.2, v0.2.1 and v0.2 entries with the correction, the live proofs and the honest limits |
+| `FILE_LIST.md` | 7979 | this list |
 | `LICENSE` | 11357 | Apache License 2.0, standard text |
-| `README.md` | 20993 | front page: 30-second pitch, the problem (pain points) and how Crossroad A2A answers them, what each AI can and cannot do, relation to the A2A protocol, try-it commands, island map, letter journey with a worked example, proof (three screenshots), what works, what does not, comparison |
+| `README.md` | 21687 | front page: 30-second pitch, the problem (pain points) and how Crossroad A2A answers them, what each AI can and cannot do, relation to the A2A protocol, try-it commands, island map, letter journey with a worked example, proof (three screenshots), what works, what does not, comparison |
 | `SECURITY.md` | 1070 | how to report a vulnerability privately |
-| `crossroad.example.yaml` | 3814 | example topology with generic labels (PC1, PC2, VPS1, VPS2, VPS3) |
-| `docs/ARCHITECTURE.md` | 7864 | islands, Town Hall, post offices, doorbells, Harbor, letter in six steps, identity, one answer per call id |
+| `crossroad.example.yaml` | 3871 | example topology with generic labels (PC1, PC2, VPS1, VPS2, VPS3) |
+| `docs/ARCHITECTURE.md` | 8236 | islands, Town Hall, post offices, doorbells, Harbor, letter in six steps, identity, one answer per call id |
 | `docs/BENCHMARK.md` | 4744 | comparison with tmux-style setups and herdr, with public sources |
-| `docs/GEMINI_MEMBER.md` | 7712 | v0.2: Gemini web app as a member, connector route and Tasks command channel, one live round trip, honest limits, evidence table |
-| `docs/HOW_TO_JOIN.md` | 6333 | how each kind of agent joins (Claude Code, Codex, container agent, ChatGPT, Gemini, Grok) |
-| `docs/KNOWN_LIMITS.md` | 6020 | twenty-six known limits, with evidence class |
+| `docs/GEMINI_MEMBER.md` | 8234 | v0.2: Gemini web app as a member, connector route and Tasks command channel, one live round trip, honest limits, evidence table |
+| `docs/HOW_TO_JOIN.md` | 7470 | how each kind of agent joins (Claude Code, Codex, container agent, ChatGPT, Gemini, Grok) |
+| `docs/KNOWN_LIMITS.md` | 6479 | twenty-six known limits, with evidence class |
 | `docs/POLICY_VERSIONS.md` | 3363 | v0.2: signed policy versions that open specific pairs only, rollout order, no downgrade |
-| `docs/ROADMAP.md` | 3204 | what comes next, in order |
-| `docs/STATUS.md` | 6067 | send / receive / reply table and the newest end-to-end proofs, measured |
+| `docs/ROADMAP.md` | 3390 | what comes next, in order |
+| `docs/STATUS.md` | 6453 | send / receive / reply table and the newest end-to-end proofs, measured |
 | `docs/TRUST_RULES.md` | 7816 | the twelve rules every member follows, what enforces each, and the cryptographic, SSH and local-isolation boundaries |
-| `docs/island-map.html` | 18464 | island map page with a text version of the diagram |
-| `docs/island-map.svg` | 14182 | island map as a standalone SVG |
+| `docs/island-map.html` | 18643 | island map page with a text version of the diagram |
+| `docs/island-map.svg` | 14248 | island map as a standalone SVG |
 | `docs/letter-journey.svg` | 3401 | the six-step letter journey as a standalone figure |
-| `docs/proof/README.md` | 5668 | masked screenshots of real runs: one honest caption per image, how to read them, limits |
+| `docs/proof/README.md` | 5794 | masked screenshots of real runs: one honest caption per image, how to read them, limits |
 | `docs/proof/chatgpt_app_1_scheduled_reply.png` | 258557 | ChatGPT desktop: scheduled task reports one letter answered (masked) |
 | `docs/proof/chatgpt_web_1_reply_with_nonce.png` | 149786 | ChatGPT web: chat-driven check, read and reply (masked) |
 | `docs/proof/chatgpt_web_2_scheduled.png` | 73691 | ChatGPT web: Scheduled page showing one completed task (masked) |
@@ -77,4 +77,4 @@ Every file in this repository, with size in bytes and purpose. Generated 2026-11
 | `tools/scan_public.py` | 14128 | stdlib scanner that fails on private data (IPs, emails, tokens, keys, ids, names); checks each PNG's structure and CRCs and scans its decoded text chunks |
 | `tools/test_scan_public.py` | 6362 | stdlib positive and negative controls for the scanner's PNG path (synthetic PNGs; the real proof images give 0 findings) |
 
-Total: 72 files, 3006722 bytes.
+Total: 72 files, 3013953 bytes.

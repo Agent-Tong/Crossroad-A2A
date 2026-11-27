@@ -2,7 +2,7 @@
 # Overview that combines the island, member and policy shapes in one file. It is NOT a single policy.schema.json instance
 # (that schema has additionalProperties false and a different top level). Per-shape companions: spec/*.schema.json and spec/examples/*.json.
 version: 1
-status: v0.2.1-example
+status: v0.2.2-example
 
 town_hall:
   host: VPS2                # always on; registers members, checks routes, cleanses every letter, keeps the ledger
@@ -47,7 +47,7 @@ members:
   - {id: container-agent-b,   kind: container-agent, island: vps1, doorbell: tray,        can_send: true,  can_receive: true,  status: live}
   - {id: chatgpt, kind: chatgpt,  island: vps3, doorbell: pull, can_send: false, can_receive: true, status: test-only, authority_of_answers: none}
   - {id: gemini,  kind: gemini,   island: vps3, doorbell: pull, can_send: false, can_receive: true, status: test-only, authority_of_answers: none}
-  - {id: grok,    kind: grok,     island: vps3, doorbell: pull, can_send: false, can_receive: false, status: planned, authority_of_answers: none}
+  - {id: grok,    kind: grok,     island: vps3, doorbell: pull, can_send: true,  can_receive: true,  status: live-by-hand, authority_of_answers: none}   # live since 2026-11-10; a human starts each turn
   - {id: claude-web, kind: claude-web, island: vps3, doorbell: pull, can_send: false, can_receive: false, status: planned, authority_of_answers: none}
 
 routes:                      # any member may write to any member the route table allows
