@@ -25,7 +25,7 @@ Honest list, most important first. Evidence class in brackets: **measured**, **i
 13. **The Google app is in "Testing".** Its refresh token expires every 7 days, so the owner re-consents weekly until the app can go to production. [vendor documentation]
 14. **Gemini may not write the strict fenced answer.** The first live answer was refused for format. The instruction now asks for the fence in words and by example; whether the model obeys it on a real timer is **not proven**.
 15. **Vendor and model drift.** Tunnel authentication, plugin permission pages, scheduled-task behaviour and model names change without notice. Pin the tunnel client binary and re-check after each vendor update. [assumed]
-16. **Small VPS.** VPS1 is small and has no swap. A tunnel reconnect storm or a leak could squeeze an existing agent first. Harbor (VPS3, live since 2026-11-23) is a separate VPS, so SaaS doors do not load VPS1. [measured; effect inferred]
+16. **Small VPS.** VPS1 is small and has no swap. A tunnel reconnect storm or a leak could squeeze an existing agent first. Harbor (VPS3, live; the Grok door since 2026-11-10) is a separate VPS, so SaaS doors do not load VPS1. [measured; effect inferred]
 
 ## Added in v0.2
 
@@ -33,6 +33,7 @@ Honest list, most important first. Evidence class in brackets: **measured**, **i
 22. **The Tasks command channel is a deliberate route around the per-write tap.** It is honest only if the owner knowingly delegates that authority. The Google Tasks scope can also remove tasks; the postman never does, but the token could. [design; vendor documentation]
 23. **A letter longer than one Tasks note (8192 characters) is refused, not cut.** It is kept whole locally and delivery is acknowledged only after a hash check. Eight letters that cannot be stored at once can hide later mail from the door's front page until the cause is fixed. [design; not run live]
 24. **One live Gemini reply is proven, by the connector route only, and it is not unattended.** On 2026-11-23 a Gemini app member answered one letter. The member runs inside the Gemini app, a human starts the turn (Task mode), and the app asks the owner to allow some tool calls. The Tasks command channel was not run live; its tests use fakes only. [measured]
+24a. **The Grok and Gemini members are human-started.** A Grok bot has been live on Harbor since 2026-11-10 and the Gemini member since 2026-11-14. Each acts only when a person types in its chat; the Gemini app also asks the owner to allow some tool calls. Grok Automations could remove the human start; not tested. Each Grok turn costs about 25 to 30 thousand tokens. [measured for the live dates; token figure estimated; Automations assumed]
 25. **A new signed policy is a multi-host rollout with no downgrade.** After the switch the undo is a switch-off. See [POLICY_VERSIONS.md](POLICY_VERSIONS.md). [measured offline; the first live switch on 2026-11-23 confirmed it]
 26. **The first live policy switch found two faults, both fixed live.** A pinned rulebook module on Harbor still held the old rulebook, and Town Hall lacked per-route switch rows for the new pairs. The switch took about 4 minutes of mail gap. A pre-switch checklist is not written yet. [measured, 2026-11-23]
 

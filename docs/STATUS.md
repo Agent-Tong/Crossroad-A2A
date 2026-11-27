@@ -1,6 +1,6 @@
-# Status (v0.2.1)
+# Status (v0.2.2)
 
-The numbers below are the v0.1 measurements of 14-16 October 2026, kept unchanged. v0.2 adds one live measurement, on 2026-11-23; see the section "v0.2: what is proven live" at the end.
+The numbers below are the v0.1 measurements of 14-16 October 2026, kept unchanged. Later live measurements: the Grok member (2026-11-10 and 2026-11-11, in the Grok row) and the Gemini member (2026-11-15 with Grok; 2026-11-23 with a PC1 agent); see the section "v0.2: what is proven live" at the end.
 
 Everything here is from one installation. **Measured** = counted from our own ledgers, outbox, results store or test output on 2026-10-16 (data from 2026-10-09 to 2026-10-16 as noted). **U** = unattended, no human step. The point of the table is to show where mail does *not* flow yet.
 
@@ -14,8 +14,8 @@ Everything here is from one installation. **Measured** = counted from our own le
 | ChatGPT-app agents on PC2 (planned) | not tested | hand test only | not tested |
 | Container agents on VPS1 | mixed: some started letters until 2026-10-09 or 2026-10-14, a few are stuck; most not tested | **yes U** (about 3 to 6 min in the cases timed) | **yes** (many answers for one agent, about 3 min) |
 | ChatGPT | off by design | **yes U**, test tray only | **yes U**, test tray only (one scheduled run) |
-| Gemini | not built (a Gemini app member can send through the connector; not tested live) | **yes U**, real Google Tasks, 2026-10-15; **yes**, connector route, 2026-11-23, human-started | admission refused once on 2026-10-15 (answer format); **yes** on 2026-11-23: answer admitted by Town Hall, about 30 min after the send |
-| Grok | not tested | research only | research only |
+| Gemini | **yes**, by hand, 2026-11-15: a new letter to the Grok member through the connector, admitted (the Tasks route has no sender) | **yes U**, real Google Tasks, 2026-10-15; **yes**, connector route, 2026-11-15 (letter from the Grok member) and 2026-11-23, human-started | admission refused once on 2026-10-15 (answer format); **yes** on 2026-11-23: answer admitted by Town Hall, about 30 min after the send |
+| Grok | **yes**, by hand, 2026-11-10 and 2026-11-15; human-started | **yes**, connector route (pull), 2026-11-10 | **yes**: answer admitted 36 seconds after the send (2026-11-10); regression round trip 2026-11-11 (about 10 minutes) |
 
 ## The newest end-to-end proof (2026-10-16)
 
