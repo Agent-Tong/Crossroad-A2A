@@ -8,7 +8,7 @@ Masked screenshots from real runs, 15-16 October 2026 (UTC), on one installation
 - **The visible nonces and task titles are synthetic test identifiers** made for these runs.
 - **These screenshots show UI responses and task status for narrower tests.** They are **not** proof of signed Town Hall admission, and **not** proof of full end-to-end delivery on the live path. The ChatGPT and Gemini items are test-tray or transport-only tests; see [../STATUS.md](../STATUS.md) and the NOT-proven sections of the reference READMEs.
 - A screenshot can be staged or edited by a person. The measured counts in [../STATUS.md](../STATUS.md) are our own ledgers, not independently checked.
-- **Grok: not connected yet. No screenshot, by design.**
+- **Grok: not connected yet. No screenshot, by design.** (October 2026 text, kept as history.) Since 2026-11-10 a Grok bot is connected through Harbor; no screenshot in this release.
 
 ## Container agent on VPS1, in Telegram
 
